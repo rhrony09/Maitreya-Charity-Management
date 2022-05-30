@@ -7025,3 +7025,43 @@ h3 {
 .banner-page .breadcrumb {
     font-size: 18px;
 }
+
+
+@media screen and (max-width: 767px) {
+    .middlebar {
+        padding: 0;
+        height: 0;
+    }
+
+    .header-1 .navbar-main {
+        background-color: #ffffff;
+    }
+
+    .header-1 .navbar-main .navbar-brand {
+        top: 0;
+    }
+
+    .navbar-main .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .header-1 .navbar-main.stiky>.container {
+        padding: 0;
+    }
+
+    .header-1 .navbar-main .navbar-nav .nav-link {
+        color: #000;
+    }
+
+    .navbar-brand img {
+        width: 130px;
+    }
+
+    .banner.owl-carousel {
+        height: 300px;
+    }
+
+    .powered {
+        display: block;
+    }
+}

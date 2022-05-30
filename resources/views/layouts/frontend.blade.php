@@ -169,8 +169,8 @@
                             $eng_number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
                             $ban_number = ['১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '০'];
                         @endphp
-                        <p class="ftex"><a href="{{ route('index') }}"><span class="color-primary">মৈত্রেয়</span></a> &copy; ২০২০-{{ str_replace($eng_number, $ban_number, date('Y')) }} | সর্বস্বত্ব সংরক্ষিত . Powered by <a href="https://www.imbdagency.com"><span
-                                    class="color-primary">IMBD Agency</span></a></p>
+                        <p class="ftex"><a href="{{ route('index') }}"><span class="color-primary">মৈত্রেয়</span></a> &copy; ২০২০-{{ str_replace($eng_number, $ban_number, date('Y')) }} | সর্বস্বত্ব সংরক্ষিত . <span class="powered">Powered by <a
+                                    href="https://www.imbdagency.com"><span class="color-primary">IMBD Agency</span></a></span></p>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,6 @@
                             <div class="modal-content border-0">
                                 <div class="row">
                                     <div class="col-lg-12 position-relative">
-                                        <button type="button" class="close position-absolute" style="top: -15px; right: 15px;" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <img src="{{ asset('uploads/images/modal-cover.jpg') }}" alt="Banner">
                                         <div class="py-3">
                                             <p>আমাদের ডোনেট করতে আগ্রহী হবার জন্য আপনাকে ধন্যবাদ। নিম্নোক্ত মোবাইল ব্যাংকিং গুলোর মাধ্যমে আমাদেরকে আপনার ডোনেশনের অর্থ পাঠাতে পারেন।</p>
