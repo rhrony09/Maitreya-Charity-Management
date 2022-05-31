@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DonationConfirmation;
 use App\Models\Funds;
 use App\Models\Month;
 use App\Models\PaymentMethod;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FundsController extends Controller {
 
@@ -130,6 +132,47 @@ class FundsController extends Controller {
             'payment_method' => $request->payment_method,
             'created_at' => now(),
         ]);
+
+        if ($request->type == 1) {
+            $payment_method = '';
+            if ($request->payment_method) {
+                $payment_method = PaymentMethod::find($request->payment_method)->name;
+            }
+            $data = [
+                'name' => User::find($request->member)->name,
+                'email' => User::find($request->member)->email,
+                'contact' => User::find($request->member)->contact,
+                'month' => Month::find($request->month)->name . ' ' . $request->year,
+                'amount' => $request->amount,
+                'payment_method' => $payment_method,
+            ];
+
+            //send confirmation mail to user
+            if ($data['email']) {
+                if (Mail::to($data['email'])->queue(new DonationConfirmation($data))) {
+                    rh_log($data['email'], 'Donation Received Email', 'Sent');
+                } else {
+                    rh_log($data['email'], 'Donation Received Email', 'Failed');
+                }
+            }
+
+            //send confirmation sms to user
+            $en_month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            $bn_month_list = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'অগাস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+            $en_number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            $bn_number = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            $bangla_date = str_replace($en_number, $bn_number, str_replace($en_month_list, $bn_month_list, $data['month']));
+            $message = $bangla_date . ' এর মাসিক ডোনেশন প্রদানের জন্য ধন্যবাদ।
+
+টিম মৈত্রেয়';
+
+            if (send_sms($data['contact'], $message)) {
+                rh_log($data['contact'], 'Donation Received SMS', 'Sent');
+            } else {
+                rh_log($data['contact'], 'Donation Received SMS', 'Failed');
+            }
+        }
+
         return redirect()->route('funds')->with('success', 'Funds added successfully');
     }
 

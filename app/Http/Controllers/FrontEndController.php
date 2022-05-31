@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Middleware\noCache;
 use App\Models\Contact;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Auth;

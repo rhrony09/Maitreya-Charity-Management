@@ -91,7 +91,8 @@ class UserController extends Controller {
                 'contact' => $request->contact,
                 'type' => $request->type,
                 'password' => bcrypt($request->password),
-                'role' => $request->role ?? 6,
+                'status' => 1,
+                'role' => $request->role ?? 4,
                 'created_at' => Carbon::now()
             ]);
 

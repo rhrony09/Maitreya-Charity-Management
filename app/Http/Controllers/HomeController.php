@@ -219,6 +219,10 @@ class HomeController extends Controller {
     }
 
     public function debug() {
-        send_sms('01839096877', 'টেস্ট সম্পাদনা করা হয়েছে');
+        if (send_sms('01839096877', 'টেস্ট সম্পাদনা করা হয়েছে')) {
+            rh_log('01839096877', 'Dubug SMS', 'Sent');
+        } else {
+            rh_log('01839096877', 'Dubug SMS', 'Failed');
+        }
     }
 }
