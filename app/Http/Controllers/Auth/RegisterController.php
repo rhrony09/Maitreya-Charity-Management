@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AdminNotification;
 use App\Mail\UserRegistration;
 use App\Models\Log;
 use App\Providers\RouteServiceProvider;
@@ -68,17 +69,22 @@ class RegisterController extends Controller {
      * @return \App\Models\User
      */
     protected function create(array $data) {
+        $user_details = [
+            'name' => $data['name'],
+            'contact' => $data['contact'],
+            'password' => $data['password'],
+        ];
         if ($data['email']) {
-            $user_details = [
-                'name' => $data['name'],
-                'contact' => $data['contact'],
-                'password' => $data['password'],
-            ];
             if (Mail::to($data['email'])->queue(new UserRegistration($user_details))) {
                 rh_log($data['email'], 'Member Reg Email', 'Sent');
             } else {
                 rh_log($data['email'], 'Member Reg Email', 'Failed');
             }
+        }
+        if (Mail::to('info@maitreyabd.org')->queue(new AdminNotification($user_details))) {
+            rh_log('info@maitreyabd.org', 'Admin Notification Email', 'Sent');
+        } else {
+            rh_log('info@maitreyabd.org', 'Admin Notification Email', 'Failed');
         }
 
         $message = 'আমাদের সাথে স্বেচ্ছাসেবী হিসাবে যোগদানের জন্য ধন্যবাদ।
