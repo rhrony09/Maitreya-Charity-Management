@@ -34,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <label for="">ইমেইল</label>
+                                            <label for="">ইমেইল (ঐচ্ছিক)</label>
                                             <input type="text" class="form-control" name="email" value="{{ old('email') }}">
                                         </div>
                                     </div>

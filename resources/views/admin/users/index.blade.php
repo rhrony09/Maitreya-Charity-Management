@@ -70,7 +70,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="text-center">No users found</td>
+                                    <td colspan="10" class="text-center">No Member found</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -78,8 +78,8 @@
                 </div>
                 @if (Auth::user()->role <= 3)
                     <div class="card-footer">
-                        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Add User</a>
-                        <a href="{{ route('users.trashed') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i> Trashed Users</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Add Member</a>
+                        <a href="{{ route('users.trashed') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i> Trashed Member</a>
                     </div>
                 @endif
             </div>

@@ -50,7 +50,7 @@ class UserController extends Controller {
         if (Auth::user()->role <= 2) {
             $users = User::onlyTrashed()->get();
             return view('admin.users.trashed', [
-                'page_title' => 'Deleted Users',
+                'page_title' => 'Deleted Members',
                 'users' => $users,
             ]);
         } else {
@@ -62,7 +62,7 @@ class UserController extends Controller {
     public function user_create() {
         if (Auth::user()->role <= 2) {
             return view('admin.users.create', [
-                'page_title' => 'Add New User',
+                'page_title' => 'Add New Member',
                 'roles' => Role::all()
             ]);
         } else {

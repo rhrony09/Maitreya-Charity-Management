@@ -104,7 +104,7 @@ class FundsController extends Controller {
 
     public function funds_store(Request $request) {
         if (Auth::user()->role > 3) {
-            return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
+            return redirect()->route('home')->with('error', 'You are not authorized to perform this action.');
         }
         $request->validate([
             'type' => 'required',
@@ -162,7 +162,9 @@ class FundsController extends Controller {
             $en_number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             $bn_number = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
             $bangla_date = str_replace($en_number, $bn_number, str_replace($en_month_list, $bn_month_list, $data['month']));
-            $message = $bangla_date . ' এর মাসিক ডোনেশন প্রদানের জন্য ধন্যবাদ।
+            $amount    = str_replace($en_number, $bn_number, $data['amount']);
+            $message = $amount . ' টাকা প্রদানের জন্য ধন্যবাদ।
+(' . $bangla_date . ')
 
 টিম মৈত্রেয়';
 

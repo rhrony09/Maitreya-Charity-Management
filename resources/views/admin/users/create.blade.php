@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="text-center">Add New User</h3>
+                    <h3 class="text-center">{{ $page_title }}</h3>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
@@ -19,7 +19,7 @@
                                 @enderror
                             </div>
                             <div class="col-lg-6">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label">Email (Optional)</label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}">
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-lg-5">
-                                <label for="image" class="form-label">Image</label>
+                                <label for="image" class="form-label">Image (Optional)</label>
                                 <img id="picture" class="img-preview mb-3 rounded-circle shadow" src="{{ asset('uploads/users/default.jpg') }}" alt="Profile Photo">
                                 <input type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image" oninput="picture.src=window.URL.createObjectURL(this.files[0])" accept="image/png, image/jpeg">
                                 @error('image')
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">Add User</button>
+                            <button type="submit" class="btn btn-primary">Add Member</button>
                         </div>
                     </form>
                 </div>

@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="text-center">Deleted Users ({{ count($users) }})</h3>
+                    <h3 class="text-center">{{ $page_title }} ({{ count($users) }})</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-bordered text-center align-middle" id="example">
@@ -48,7 +48,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10" class="text-center">No users found</td>
+                                    <td colspan="10" class="text-center">No Member found</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -56,7 +56,7 @@
                 </div>
                 @if (Auth::user()->role <= 3)
                     <div class="card-footer">
-                        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Add User</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Add Member</a>
                     </div>
                 @endif
             </div>

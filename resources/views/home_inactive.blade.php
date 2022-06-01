@@ -10,9 +10,9 @@
                     </div>
                     <div class="col-lg-6 px-5">
                         <h2 class="text-center fs-1 fw-bolder mb-4"><big>Oppsssss...</big></h2>
-                        <h4 class="text-center">Your account is Inactive.</h4>
+                        <h4 class="text-center mb-3">Your account is currently Inactive.</h4>
                         <p class="text-center">
-                            Please contact to Team Maitreya for active your account.
+                            Please wait for the confirmation from Team Maitreya.<br>We will let you know soon (by sms).
                         </p>
                         <div class="row my-5">
                             <div class="col-lg-6">
