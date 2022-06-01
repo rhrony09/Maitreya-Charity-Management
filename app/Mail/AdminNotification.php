@@ -28,6 +28,6 @@ class AdminNotification extends Mailable {
     public function build() {
         return $this->markdown('admin.mail.admin_notification', [
             'user' => $this->user
-        ]);
+        ])->subject('New User Registration');
     }
 }

@@ -3,6 +3,28 @@
 @section('content')
     <div class="container py-4">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="card radius-10 bg-purple py-3 px-3">
+                    <div class="card-body">
+                        <h4 class="mb-0 text-white">Payment Methods</h4>
+                        <div class="d-lg-flex pt-3 gap-5 text-light">
+                            <div>
+                                <h6 class="mb-1">Bkash: 01680-710175</h6>
+                                <button class="btn btn-light btn-sm scan-qr" data-id="1"><img src="{{ asset('uploads/images/qr-scan.svg') }}" width="18px"> Scan QR</button>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Nagad: 01719-590659</h6>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Rocket: 01766-379827</h6>
+                                <button class="btn btn-light btn-sm scan-qr" data-id="2"><img src="{{ asset('uploads/images/qr-scan.svg') }}" width="18px"> Scan QR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-4">
                 <div class="card radius-10 bg-primary">
                     <div class="card-body">
@@ -387,4 +409,38 @@
             </div>
         </div>
     </div>
+
+    <!-- QR Modal -->
+    <div class="modal fade" id="QrModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title">Scan QR</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.scan-qr').click(function() {
+                let id = $(this).data('id');
+                $('#QrModal').modal('show');
+                if (id == 1) {
+                    $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/bkash-qr.jpg') }}" alt="qr-code">');
+                } else if (id == 2) {
+                    $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/rocket-qr.jpg') }}" alt="qr-code">');
+                }
+            });
+        });
+    </script>
 @endsection

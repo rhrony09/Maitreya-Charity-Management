@@ -8,8 +8,10 @@
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}</title>
-    <meta name="description" content="NGOO is a clean, modern, and fully responsive HTML Template. it is designed for charity, non-profit, fundraising, donation, volunteer, businesses or any type of person or business who wants to showcase their work, services and professional way.">
-    <meta name="keywords" content="campaign, cause, charity, donate, donations, event, foundation, fund, fundraising, kids, ngo, non-profit, organization, volunteer">
+    <!-- facebook meta tag -->
+    <meta property="og:title" content="{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}">
+    <meta property="og:description" content="মৈত্রেয় মূলত গাইবান্ধা জেলার এস.এস.সি-১৩ ব্যাচের শিক্ষার্থীদের গড়ে তোলা একটি সংগঠন। ২০২০ সাল থেকে এই সংগঠনের সদস্যরা নানা ধরণের সেবামূলক কাজ করে আসছে।">
+    <meta property="og:image" content="{{ asset('uploads/images/maitreya-og.jpg') }}">
     <meta name="author" content="RH Rony">
 
     <!-- ==============================================
@@ -29,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/vendor/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/vendor/magnific-popup.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/css/vendor/animate.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!-- ==============================================
  Custom Stylesheet
@@ -177,7 +180,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Donate Modal -->
     <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-md  modal-dialog-centered" role="document">
             <div class="modal-content rounded-0">
@@ -193,9 +196,9 @@
                                         <div class="py-3">
                                             <p>আমাদের ডোনেট করতে আগ্রহী হবার জন্য আপনাকে ধন্যবাদ। নিম্নোক্ত মোবাইল ব্যাংকিং গুলোর মাধ্যমে আমাদেরকে আপনার ডোনেশনের অর্থ পাঠাতে পারেন।</p>
                                             <p class="text-center h4">
-                                                বিকাশ: 01680 710175<br>
+                                                বিকাশ: 01680 710175 <a href="javascript:void(0)" class="color-primary scan-qr ml-2" data-id="1" title="স্ক্যান করুন"><i style="font-size: 16px" class="bi bi-qr-code-scan"></i></a><br>
                                                 নগদ: 01719 590659<br>
-                                                রকেট: 01766 37827
+                                                রকেট: 01766 37827 <a href="javascript:void(0)" class="color-primary scan-qr ml-2" data-id="2" title="স্ক্যান করুন"><i style="font-size: 16px" class="bi bi-qr-code-scan"></i></a>
                                             </p>
                                             <p class="text-center pt-4">মাসিক ডোনেশন পাঠাতে চাইলে এখনি <a class="color-primary" href="{{ route('volunteer') }}">রেজিস্ট্রেশন</a> করুন</p>
                                             <div class="text-center"><button class="btn py-1 px-3 btn-primary" data-dismiss="modal">বন্ধ করুন</button></div>
@@ -206,6 +209,26 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="modal fade" id="QrModal" tabindex="-1" aria-labelledby="QrModal" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="QrModal">স্ক্যান করুন</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:void(0)" class="badge badge-secondary qr-go-back"><i style="font-size: 16px" class="bi bi-arrow-bar-left"></i> পিছনে যান</a>
                 </div>
             </div>
         </div>
@@ -223,6 +246,22 @@
 
     <script>
         $('.donate').click(function() {
+            $('#donateModal').modal('show');
+        });
+
+        $('.scan-qr').click(function() {
+            let id = $(this).data('id');
+            $('#donateModal').modal('hide');
+            $('#QrModal').modal('show');
+            if (id == 1) {
+                $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/bkash-qr.jpg') }}" alt="qr-code">');
+            } else if (id == 2) {
+                $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/rocket-qr.jpg') }}" alt="qr-code">');
+            }
+        });
+
+        $('.qr-go-back').click(function() {
+            $('#QrModal').modal('hide');
             $('#donateModal').modal('show');
         });
 
