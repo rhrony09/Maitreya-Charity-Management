@@ -25,13 +25,13 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered text-center align-middle" id="example">
+                    <table class="table table-bordered text-center align-middle nowrap" id="example" width="100%">
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th style="min-width: 230px">Member</th>
+                                <th style="min-width: 280px">Member</th>
                                 @foreach ($months as $month)
-                                    <th style="min-width: 50px">{{ $month->name }}</th>
+                                    <th>{{ $month->name }}</th>
                                 @endforeach
                                 <th>Action</th>
                             </tr>

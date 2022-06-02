@@ -7,7 +7,7 @@
                     <h3 class="text-center">{{ $page_title }}</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered text-center align-middle" id="example">
+                    <table class="table table-bordered text-center align-middle nowrap" id="example">
                         <thead>
                             <tr>
                                 <th>Serial</th>

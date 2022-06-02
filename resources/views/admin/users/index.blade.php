@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered text-center align-middle" id="example">
+                    <table class="table table-striped table-bordered text-center align-middle nowrap" id="example">
                         <thead>
                             <tr>
                                 <th>Serial</th>

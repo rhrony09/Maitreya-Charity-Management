@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered text-center align-middle" id="example" style="width:100%">
+                    <table class="table table-striped table-bordered text-center align-middle nowrap" id="example" style="width:100%">
                         <thead>
                             <tr>
                                 <th>S/N</th>

@@ -36,7 +36,7 @@
                             <p class="m-0">Last Payment: {{ $user->funds->count() > 0? $user->funds->sortBy('created_at')->last()->created_at->diffForHumans(): 'N/A' }}</p>
                         </div>
                     </div>
-                    <table class="table table-bordered text-center align-middle">
+                    <table class="table table-bordered text-center align-middle" id="example1">
                         <thead>
                             <tr>
                                 @foreach ($months as $month)

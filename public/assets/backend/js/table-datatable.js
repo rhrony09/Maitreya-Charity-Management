@@ -9,9 +9,21 @@ $(function () {
             ],
             scrollX: true,
             ordering: false,
+            autoWidth: false
         });
     });
 
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            scrollX: true,
+            ordering: false,
+            autoWidth: false,
+            lengthChange: false,
+            searching: false,
+            paging: false,
+            info: false,
+        });
+    });
 
     $(document).ready(function () {
         var table = $('#example2').DataTable({
