@@ -47,7 +47,7 @@
                                 <label for="role" class="form-label">Role</label>
                                 <select name="role" id="role" class="form-control {{ $errors->has('role') ? 'is-invalid' : '' }}">
                                     @foreach ($roles as $role)
-                                        @if (Auth::user()->role < $role->id)
+                                        @if ($user->role < $role->id)
                                             <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected' : '' }}>{{ $role->role }}</option>
                                         @endif
                                     @endforeach

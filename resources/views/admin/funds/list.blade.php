@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-lg-3 text-start">
-                            @if (Auth::user()->role <= 3)
+                            @if ($user->role <= 3)
                                 <a href="{{ route('funds.add') }}" class="btn btn-primary btn-sm">Add Fund</a>
                             @endif
                         </div>
@@ -78,7 +78,7 @@
 @endsection
 
 @section('script')
-    @if (Auth::user()->role <= 3)
+    @if ($user->role <= 3)
         <script>
             $(document).ready(function() {
                 $('#filter').on('change', function() {

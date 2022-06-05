@@ -16,31 +16,31 @@
                                 <input type="hidden" name="id" value="{{ $user->id }}">
                                 <div class="col-6">
                                     <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }} {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" value="{{ old('name') ?? $user->name }}">
+                                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }} {{ $user->role <= $user->role && $user->role <= 2 ? '' : 'disabled' }}" value="{{ old('name') ?? $user->name }}">
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Email</label>
-                                    <input type="text" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }} {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" value="{{ old('email') ?? $user->email }}">
+                                    <input type="text" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }} {{ $user->role <= $user->role && $user->role <= 2 ? '' : 'disabled' }}" value="{{ old('email') ?? $user->email }}">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Contact</label>
-                                    <input type="tel" name="contact" class="form-control  {{ $errors->has('contact') ? 'is-invalid' : '' }} {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" value="{{ old('contact') ?? $user->contact }}">
+                                    <input type="tel" name="contact" class="form-control  {{ $errors->has('contact') ? 'is-invalid' : '' }} {{ $user->role <= $user->role && $user->role <= 2 ? '' : 'disabled' }}" value="{{ old('contact') ?? $user->contact }}">
                                     @error('contact')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Role</label>
-                                    @if (Auth::user()->role < $user->role && Auth::id() != $user->id)
+                                    @if ($user->role < $user->role && Auth::id() != $user->id)
                                         <select class="form-select" name="role">
                                             @foreach ($roles as $role)
-                                                @if (Auth::user()->role < $role->id)
+                                                @if ($user->role < $role->id)
                                                     <option value="{{ $role->id }}" {{ old('role') == $role->id || $role->id == $user->role ? 'selected' : '' }}>{{ $role->role }}</option>
                                                 @endif
                                             @endforeach
@@ -53,13 +53,13 @@
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Member Type</label>
-                                    <select class="form-select {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" name="type">
+                                    <select class="form-select {{ $user->role <= $user->role && $user->role <= 2 ? '' : 'disabled' }}" name="type">
                                         <option value="1" {{ $user->type == 1 ? 'selected' : '' }}>Regular Member</option>
                                         <option value="2" {{ $user->type == 2 ? 'selected' : '' }}>Family Member</option>
                                     </select>
                                 </div>
                                 <div class="text-start">
-                                    @if (Auth::user()->role <= $user->role && Auth::user()->role <= 2)
+                                    @if ($user->role <= $user->role && $user->role <= 2)
                                         <button type="submit" class="btn btn-primary btn-sm">Update</button>
                                     @endif
                                 </div>
@@ -70,7 +70,7 @@
             </div>
 
             <!--change password-->
-            @if (Auth::user()->role <= $user->role && Auth::user()->role <= 2)
+            @if ($user->role <= $user->role && $user->role <= 2)
                 <div class="card shadow-none border">
                     <div class="card-header">
                         <h6 class="mb-0">Change Password</h6>
@@ -122,7 +122,7 @@
                         @endif
                         <div class="mt-4"></div>
                     </div>
-                    @if (Auth::user()->role <= $user->role && Auth::user()->role <= 2)
+                    @if ($user->role <= $user->role && $user->role <= 2)
                         <div class="mt-5">
                             <form action="{{ route('users.update.profile.picture') }}" method="POST" enctype="multipart/form-data">
                                 @csrf

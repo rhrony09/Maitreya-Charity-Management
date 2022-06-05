@@ -13,7 +13,7 @@
                                 <th>Serial</th>
                                 <th>Name</th>
                                 <th>Created On</th>
-                                @if (Auth::user()->role == 1)
+                                @if ($user->role == 1)
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -24,7 +24,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $role->role }}</td>
                                     <td>{{ $role->created_at->diffForHumans() }}</td>
-                                    @if (Auth::user()->role == 1)
+                                    @if ($user->role == 1)
                                         <td>
                                             <button type="button" data-id="{{ $role->id }}" class="btn btn-primary btn-sm edit"><i class="fa-solid fa-pen-to-square"></i></button>
                                             <button type="button" data-id="{{ $role->id }}" class="btn btn-danger btn-sm delete"><i class="fa-solid fa-trash"></i></button>
@@ -35,7 +35,7 @@
                         </tbody>
                     </table>
                 </div>
-                @if (Auth::user()->role == 1)
+                @if ($user->role == 1)
                     <div class="card-footer">
                         <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#add-role"><i class="fa-solid fa-plus"></i> Add New Role</button>
                     </div>

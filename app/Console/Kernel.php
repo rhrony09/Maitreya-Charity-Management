@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel {
         $schedule->command('queue:work --daemon')->everyMinute()->runInBackground();
         $schedule->command('monthly:remainder')->monthlyOn(01, '10:00')->runInBackground();
         $schedule->command('monthly:remainder')->monthlyOn(10, '10:00')->runInBackground();
+        $schedule->command('clear:logs')->monthlyOn(01, '00:00')->runInBackground();
     }
 
     /**

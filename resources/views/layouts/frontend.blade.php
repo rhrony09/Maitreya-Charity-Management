@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}</title>
+    <title>{{ $settings->title }} | {{ $settings->tagline }}</title>
     <!-- facebook meta tag -->
-    <meta property="og:title" content="{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}">
+    <meta property="og:title" content="{{ $settings->title }} | {{ $settings->tagline }}">
     <meta property="og:description" content="মৈত্রেয় মূলত গাইবান্ধা জেলার এস.এস.সি-১৩ ব্যাচের শিক্ষার্থীদের গড়ে তোলা একটি সংগঠন। ২০২০ সাল থেকে এই সংগঠনের সদস্যরা নানা ধরণের সেবামূলক কাজ করে আসছে।">
     <meta property="og:image" content="{{ asset('uploads/images/maitreya-og.jpg') }}">
     <meta name="author" content="RH Rony">
@@ -17,10 +17,10 @@
     <!-- ==============================================
  Favicons
  =============================================== -->
-    <link rel="shortcut icon" href="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}">
-    <link rel="apple-touch-icon" href="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}">
+    <link rel="shortcut icon" href="{{ asset('uploads/logo/' . $settings->favicon) }}">
+    <link rel="apple-touch-icon" href="{{ asset('uploads/logo/' . $settings->favicon) }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('uploads/logo/' . $settings->favicon) }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('uploads/logo/' . $settings->favicon) }}">
 
     <!-- ==============================================
  CSS VENDOR
@@ -40,7 +40,7 @@
 
     <style>
         .loader {
-            background-image: url("{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'logo_black')->get()->first()->name) }}");
+            background-image: url("{{ asset('uploads/logo/' . $settings->logo_black) }}");
         }
 
     </style>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="body-content">
                             <div class="heading">মোবাইল:</div>
-                            {{ App\Models\Setting::where('type', 'contact')->get()->first()->name }}
+                            {{ $settings->contact }}
                         </div>
                     </div>
                     <!-- INFO 2 -->
@@ -82,7 +82,7 @@
                         </div>
                         <div class="body-content">
                             <div class="heading">ইমেইল:</div>
-                            {{ App\Models\Setting::where('type', 'email')->get()->first()->name }}
+                            {{ $settings->email }}
                         </div>
                     </div>
                     <!-- INFO 3 -->
@@ -99,7 +99,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="{{ route('index') }}">
-                        <img src="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'logo_black')->get()->first()->name) }}" alt="Logo" />
+                        <img src="{{ asset('uploads/logo/' . $settings->logo_black) }}" alt="Logo" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -151,7 +151,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="footer-item d-flex align-items-center flex-column">
-                            <img src="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'logo')->get()->first()->name) }}" alt="logo bottom" class="logo-bottom" style="max-width: 150px">
+                            <img src="{{ asset('uploads/logo/' . $settings->logo) }}" alt="logo bottom" class="logo-bottom" style="max-width: 150px">
                             <div class="spacer-30"></div>
                             <div class="sosmed-icon primary">
                                 <a href="https://www.facebook.com/maitreyabd">ফেইসবুক</a>

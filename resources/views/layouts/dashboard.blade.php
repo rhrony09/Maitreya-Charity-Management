@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- facebook meta tag -->
-    <meta property="og:title" content="{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}">
+    <meta property="og:title" content="{{ $settings->title }} | {{ $settings->tagline }}">
     <meta property="og:description" content="মৈত্রেয় মূলত গাইবান্ধা জেলার এস.এস.সি-১৩ ব্যাচের শিক্ষার্থীদের গড়ে তোলা একটি সংগঠন। ২০২০ সাল থেকে এই সংগঠনের সদস্যরা নানা ধরণের সেবামূলক কাজ করে আসছে।">
     <meta property="og:image" content="{{ asset('uploads/images/maitreya-og.jpg') }}">
 
-    <link rel="icon" href="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}" type="image/png" />
+    <link rel="icon" href="{{ asset('uploads/logo/' . $settings->favicon) }}" type="image/png" />
     <!--plugins-->
     <link href="{{ asset('assets/backend/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
@@ -34,7 +34,7 @@
     <!-- Fontawsome 6 -->
     <link rel="stylesheet" href="{{ asset('assets/backend/css/fontawsome-6.css') }}" />
 
-    <title>{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}</title>
+    <title>{{ $settings->title }} | {{ $settings->tagline }}</title>
 </head>
 
 <body>
@@ -63,17 +63,17 @@
                         <li class="nav-item dropdown dropdown-user-setting">
                             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                                 <div class="user-setting d-flex align-items-center">
-                                    <img src="{{ asset('uploads/users/' . Auth::user()->image) }}" class="user-img" alt="">
+                                    <img src="{{ asset('uploads/users/' . $user->image) }}" class="user-img" alt="">
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('users.profile') }}">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="" class="rounded-circle" width="54" height="54">
+                                            <img src="{{ asset('uploads/users/' . $user->image) }}" alt="" class="rounded-circle" width="54" height="54">
                                             <div class="ms-3">
-                                                <h6 class="mb-0 dropdown-user-name">{{ Auth::user()->name }}</h6>
-                                                <small class="mb-0 dropdown-user-designation text-secondary">{{ Auth::user()->roles->role }}</small>
+                                                <h6 class="mb-0 dropdown-user-name">{{ $user->name }}</h6>
+                                                <small class="mb-0 dropdown-user-designation text-secondary">{{ $user->roles->role }}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -89,7 +89,7 @@
                                         </div>
                                     </a>
                                 </li>
-                                @if (Auth::user()->role <= 2)
+                                @if ($user->role <= 2)
                                     <li>
                                         <a class="dropdown-item" href="{{ route('settings') }}">
                                             <div class="d-flex align-items-center">
@@ -122,12 +122,12 @@
                                 </div>
                             </a>
                         </li>
-                        @if (Auth::user()->role <= 3)
+                        @if ($user->role <= 3)
                             <li class="nav-item dropdown dropdown-large">
                                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                                     <div class="messages">
-                                        @if (App\Models\Contact::where('status', 1)->count() > 0)
-                                            <span class="notify-badge">{{ App\Models\Contact::where('status', 1)->count() }}</span>
+                                        @if ($contact->count() > 0)
+                                            <span class="notify-badge">{{ $contact->count() }}</span>
                                         @endif
                                         <i class="fa-solid fa-message"></i>
                                     </div>
@@ -137,7 +137,7 @@
                                         <h5 class="h5 mb-0">Messages</h5>
                                     </div>
                                     <div class="header-message-list p-2">
-                                        @forelse (App\Models\Contact::where('status', 1)->latest()->get() as $message)
+                                        @forelse ($contact->latest()->get() as $message)
                                             <a class="dropdown-item" href="{{ route('site.messages.view', $message->id) }}">
                                                 <div class="d-flex align-items-center">
                                                     <img src="{{ asset('uploads/users/default.jpg') }}" alt="" class="rounded-circle" width="50" height="50">
@@ -172,10 +172,10 @@
         <aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
-                    <img src="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'logo')->get()->first()->name) }}" class="logo-icon logo-text" alt="logo">
+                    <img src="{{ asset('uploads/logo/' . $settings->logo) }}" class="logo-icon logo-text" alt="logo">
                 </div>
                 <div class="icon">
-                    <img src="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}" alt="">
+                    <img src="{{ asset('uploads/logo/' . $settings->favicon) }}" alt="">
                 </div>
                 <div class="toggle-icon ms-auto"> <i class="bi bi-list"></i>
                 </div>
@@ -197,7 +197,7 @@
                         <div class="menu-title">My Funds</div>
                     </a>
                 </li>
-                @if (Auth::user()->role <= 3)
+                @if ($user->role <= 3)
                     <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="bi bi-cash-coin"></i>
@@ -228,14 +228,14 @@
                         <a href="{{ route('site.messages') }}">
                             <div class="parent-icon"><i class="bi bi-chat-left"></i>
                             </div>
-                            <div class="menu-title">Messages @if (App\Models\Contact::where('status', 1)->count() > 0)
-                                    <span class="badge bg-danger rounded-pill">{{ App\Models\Contact::where('status', 1)->count() }}</span>
+                            <div class="menu-title">Messages @if ($contact->count() > 0)
+                                    <span class="badge bg-danger rounded-pill">{{ $contact->count() }}</span>
                                 @endif
                             </div>
                         </a>
                     </li>
                 @endif
-                @if (Auth::user()->role <= 2)
+                @if ($user->role <= 2)
                     <li class="menu-label">Admin Area</li>
                     <li>
                         <a href="{{ route('users') }}">
@@ -244,7 +244,7 @@
                             <div class="menu-title">Members</div>
                         </a>
                     </li>
-                    @if (Auth::user()->role == 1)
+                    @if ($user->role == 1)
                         <li>
                             <a href="{{ route('role') }}">
                                 <div class="parent-icon"><i class="bi bi-bar-chart-steps"></i>

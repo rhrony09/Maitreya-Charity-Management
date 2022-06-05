@@ -23,7 +23,7 @@ class HomeController extends Controller {
         if (Auth::user()->status == 1) {
             return view('home', [
                 'page_title' => 'Welcome to Maitreya',
-                'funds' => Funds::all(),
+                'funds' => Funds::get(),
                 'expenses' => Expense::all(),
             ]);
         } else {
@@ -35,15 +35,8 @@ class HomeController extends Controller {
 
     public function settings() {
         if (Auth::user()->role <= 2) {
-            $settings = [];
-            foreach (Setting::all() as $setting) {
-                $settings[$setting->type] = $setting->name;
-            }
-            $settings = json_decode(json_encode($settings), false);
-
             return view('admin.settings', [
                 'page_title' => 'Settings',
-                'settings' => $settings,
             ]);
         } else {
             return redirect()->route('home')->with('error', 'You are not authorized to access this page.');

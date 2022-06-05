@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- facebook meta tag -->
-    <meta property="og:title" content="{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}">
+    <meta property="og:title" content="{{ $settings->title }} | {{ $settings->tagline }}">
     <meta property="og:description" content="মৈত্রেয় মূলত গাইবান্ধা জেলার এস.এস.সি-১৩ ব্যাচের শিক্ষার্থীদের গড়ে তোলা একটি সংগঠন। ২০২০ সাল থেকে এই সংগঠনের সদস্যরা নানা ধরণের সেবামূলক কাজ করে আসছে।">
     <meta property="og:image" content="{{ asset('uploads/images/maitreya-og.jpg') }}">
 
-    <link rel="icon" href="{{ asset('uploads/logo/' .App\Models\Setting::where('type', 'favicon')->get()->first()->name) }}" type="image/png" />
+    <link rel="icon" href="{{ asset('uploads/logo/' . $settings->favicon) }}" type="image/png" />
     <!-- Bootstrap CSS -->
     <link href="{{ asset('assets/backend/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/backend/css/bootstrap-extended.css') }}" rel="stylesheet" />
@@ -23,7 +23,7 @@
     <!-- loader-->
     <link href="{{ asset('assets/backend/css/pace.min.css') }}" rel="stylesheet" />
 
-    <title>{{ App\Models\Setting::where('type', 'title')->get()->first()->name }} | {{ App\Models\Setting::where('type', 'tagline')->get()->first()->name }}</title>
+    <title>{{ $settings->title }} | {{ $settings->tagline }}</title>
 </head>
 
 <body>

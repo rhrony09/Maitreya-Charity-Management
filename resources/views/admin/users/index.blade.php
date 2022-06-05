@@ -29,7 +29,7 @@
                                 <th>Type</th>
                                 <th>Status</th>
                                 <th>Join On</th>
-                                @if (Auth::user()->role <= 3)
+                                @if ($user->role <= 3)
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -45,24 +45,24 @@
                                     </td>
                                     <td>{{ $user->contact }}</td>
                                     <td>
-                                        <select data-id="{{ $user->id }}" name="role" class="form-select role" {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 && Auth::id() != $user->id ? '' : 'disabled' }}>
+                                        <select data-id="{{ $user->id }}" name="role" class="form-select role" {{ $user->role <= $user->role && $user->role <= 2 && Auth::id() != $user->id ? '' : 'disabled' }}>
                                             @foreach ($roles as $role)
-                                                <option value="{{ $role->id }}" {{ $role->id == $user->role ? 'selected' : '' }} {{ Auth::user()->role >= $role->id ? 'disabled' : '' }}>{{ $role->role }}</option>
+                                                <option value="{{ $role->id }}" {{ $role->id == $user->role ? 'selected' : '' }} {{ $user->role >= $role->id ? 'disabled' : '' }}>{{ $role->role }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>{{ $user->type == 1 ? 'Regular Member' : 'Family Member' }}</td>
                                     <td>
-                                        <select data-id="{{ $user->id }}" name="status" class="form-select status" {{ $user->id != Auth::id() && Auth::user()->role <= 2 ? '' : 'disabled' }}>
+                                        <select data-id="{{ $user->id }}" name="status" class="form-select status" {{ $user->id != Auth::id() && $user->role <= 2 ? '' : 'disabled' }}>
                                             <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Active</option>
                                             <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Inactive</option>
                                         </select>
                                     </td>
                                     <td>{{ $user->created_at->diffForHumans() }}</td>
-                                    @if (Auth::user()->role <= 3)
+                                    @if ($user->role <= 3)
                                         <td>
                                             <a href="{{ route('users.view', $user->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                            @if (Auth::user()->role <= $user->role && $user->id != Auth::id())
+                                            @if ($user->role <= $user->role && $user->id != Auth::id())
                                                 <button data-id="{{ $user->id }}" class="btn btn-danger btn-sm delete"><i class="fa-solid fa-trash"></i></button>
                                             @endif
                                         </td>
@@ -76,7 +76,7 @@
                         </tbody>
                     </table>
                 </div>
-                @if (Auth::user()->role <= 3)
+                @if ($user->role <= 3)
                     <div class="card-footer">
                         <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Add Member</a>
                         <a href="{{ route('users.trashed') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i> Trashed Member</a>
@@ -88,7 +88,7 @@
 @endsection
 
 @section('script')
-    @if (Auth::user()->role <= 3)
+    @if ($user->role <= 3)
         <script>
             $(document).ready(function() {
                 $('#filter').on('change', function() {

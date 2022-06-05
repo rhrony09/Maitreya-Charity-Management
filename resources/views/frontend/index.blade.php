@@ -266,13 +266,13 @@
                             <div class="info-icon">
                                 <i class="fa fa-phone"></i>
                             </div>
-                            <div class="info-text">{{ App\Models\Setting::where('type', 'contact')->get()->first()->name }}</div>
+                            <div class="info-text">{{ $settings->contact }}</div>
                         </div>
                         <div class="rs-icon-info">
                             <div class="info-icon">
                                 <i class="fa fa-envelope"></i>
                             </div>
-                            <div class="info-text">{{ App\Models\Setting::where('type', 'email')->get()->first()->name }}</div>
+                            <div class="info-text">{{ $settings->email }}</div>
                         </div>
                         <div class="rs-icon-info">
                             <div class="info-icon">
