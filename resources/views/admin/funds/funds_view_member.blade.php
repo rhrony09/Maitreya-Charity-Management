@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-lg-2 text-start">
-                            @if ($user->role <= 3)
+                            @if (Auth::user()->role <= 3)
                                 <a href="{{ route('funds.add') }}" class="btn btn-primary btn-sm">Add Fund</a>
                             @endif
                         </div>

@@ -63,17 +63,17 @@
                         <li class="nav-item dropdown dropdown-user-setting">
                             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                                 <div class="user-setting d-flex align-items-center">
-                                    <img src="{{ asset('uploads/users/' . $user->image) }}" class="user-img" alt="">
+                                    <img src="{{ asset('uploads/users/' . Auth::user()->image) }}" class="user-img" alt="">
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('users.profile') }}">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('uploads/users/' . $user->image) }}" alt="" class="rounded-circle" width="54" height="54">
+                                            <img src="{{ asset('uploads/users/' . Auth::user()->image) }}" alt="" class="rounded-circle" width="54" height="54">
                                             <div class="ms-3">
-                                                <h6 class="mb-0 dropdown-user-name">{{ $user->name }}</h6>
-                                                <small class="mb-0 dropdown-user-designation text-secondary">{{ $user->roles->role }}</small>
+                                                <h6 class="mb-0 dropdown-user-name">{{ Auth::user()->name }}</h6>
+                                                <small class="mb-0 dropdown-user-designation text-secondary">{{ Auth::user()->roles->role }}</small>
                                             </div>
                                         </div>
                                     </a>
@@ -89,7 +89,7 @@
                                         </div>
                                     </a>
                                 </li>
-                                @if ($user->role <= 2)
+                                @if (Auth::user()->role <= 2)
                                     <li>
                                         <a class="dropdown-item" href="{{ route('settings') }}">
                                             <div class="d-flex align-items-center">
@@ -122,7 +122,7 @@
                                 </div>
                             </a>
                         </li>
-                        @if ($user->role <= 3)
+                        @if (Auth::user()->role <= 3)
                             <li class="nav-item dropdown dropdown-large">
                                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                                     <div class="messages">
@@ -175,7 +175,7 @@
                     <img src="{{ asset('uploads/logo/' . $settings->logo) }}" class="logo-icon logo-text" alt="logo">
                 </div>
                 <div class="icon">
-                    <img src="{{ asset('uploads/logo/' . $settings->favicon) }}" alt="">
+                    <img src="{{ asset('uploads/logo/' . $settings->favicon) }}" alt="icon">
                 </div>
                 <div class="toggle-icon ms-auto"> <i class="bi bi-list"></i>
                 </div>
@@ -197,7 +197,7 @@
                         <div class="menu-title">My Funds</div>
                     </a>
                 </li>
-                @if ($user->role <= 3)
+                @if (Auth::user()->role <= 3)
                     <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="bi bi-cash-coin"></i>
@@ -235,7 +235,7 @@
                         </a>
                     </li>
                 @endif
-                @if ($user->role <= 2)
+                @if (Auth::user()->role <= 2)
                     <li class="menu-label">Admin Area</li>
                     <li>
                         <a href="{{ route('users') }}">
@@ -244,7 +244,7 @@
                             <div class="menu-title">Members</div>
                         </a>
                     </li>
-                    @if ($user->role == 1)
+                    @if (Auth::user()->role == 1)
                         <li>
                             <a href="{{ route('role') }}">
                                 <div class="parent-icon"><i class="bi bi-bar-chart-steps"></i>

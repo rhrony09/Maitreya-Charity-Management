@@ -13,21 +13,21 @@
                                 @csrf
                                 <div class="col-6">
                                     <label class="form-label">Name</label>
-                                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') ?? $user->name }}">
+                                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') ?? Auth::user()->name }}">
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Contact No</label>
-                                    <input type="tel" name="contact" class="form-control {{ $errors->has('contact') ? 'is-invalid' : '' }}" value="{{ old('contact') ?? $user->contact }}">
+                                    <input type="tel" name="contact" class="form-control {{ $errors->has('contact') ? 'is-invalid' : '' }}" value="{{ old('contact') ?? Auth::user()->contact }}">
                                     @error('contact')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Email Address</label>
-                                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') ?? $user->email }}">
+                                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') ?? Auth::user()->email }}">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -82,14 +82,14 @@
             <div class="card shadow-sm border-0 overflow-hidden">
                 <div class="card-body">
                     <div class="profile-avatar text-center">
-                        <img id="profile-pic" src="{{ asset('uploads/users/' . $user->image) }}" class="rounded-circle shadow" alt="{{ $user->name }}">
+                        <img id="profile-pic" src="{{ asset('uploads/users/' . Auth::user()->image) }}" class="rounded-circle shadow" alt="{{ Auth::user()->name }}">
                     </div>
                     <div class="text-center mt-4">
-                        <h4 class="mb-1">{{ $user->name }}</h4>
-                        <p class="mb-0 text-secondary">{{ $user->roles->role }}</p>
-                        <p class="mb-0 text-secondary">Contact No: {{ $user->contact }}</p>
-                        @if ($user->email)
-                            <p class="mb-0 text-secondary">Email: {{ $user->email }}</p>
+                        <h4 class="mb-1">{{ Auth::user()->name }}</h4>
+                        <p class="mb-0 text-secondary">{{ Auth::user()->roles->role }}</p>
+                        <p class="mb-0 text-secondary">Contact No: {{ Auth::user()->contact }}</p>
+                        @if (Auth::user()->email)
+                            <p class="mb-0 text-secondary">Email: {{ Auth::user()->email }}</p>
                         @endif
                         <div class="mt-4"></div>
                     </div>

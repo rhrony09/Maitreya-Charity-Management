@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
@@ -34,7 +33,6 @@ class AppServiceProvider extends ServiceProvider {
         view()->composer('*', function ($view) {
             $view->with([
                 'settings' => $this->settings,
-                'user' => Auth::user(),
                 'contact' => Contact::where('status', 1),
             ]);
         });

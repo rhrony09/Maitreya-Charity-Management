@@ -18,7 +18,7 @@
                                 <th>Type</th>
                                 <th>Status</th>
                                 <th>Delete On</th>
-                                @if ($user->role <= 3)
+                                @if (Auth::user()->role <= 3)
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -37,10 +37,10 @@
                                     <td>{{ $user->type == 1 ? 'Regular Member' : 'Family Member' }}</td>
                                     <td>{{ $user->status == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>{{ $user->deleted_at->diffForHumans() }}</td>
-                                    @if ($user->role <= 3)
+                                    @if (Auth::user()->role <= 3)
                                         <td>
                                             <a href="{{ route('users.restore', $user->id) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-arrow-rotate-left"></i></a>
-                                            @if ($user->role <= $user->role && $user->id != Auth::id())
+                                            @if (Auth::user()->role <= $user->role && $user->id != Auth::id())
                                                 <button data-id="{{ $user->id }}" class="btn btn-danger btn-sm delete"><i class="fa-solid fa-trash"></i></button>
                                             @endif
                                         </td>
@@ -54,7 +54,7 @@
                         </tbody>
                     </table>
                 </div>
-                @if ($user->role <= 3)
+                @if (Auth::user()->role <= 3)
                     <div class="card-footer">
                         <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-user-plus"></i> Add Member</a>
                     </div>
@@ -65,7 +65,7 @@
 @endsection
 
 @section('script')
-    @if ($user->role <= 3)
+    @if (Auth::user()->role <= 3)
         <script>
             $(document).ready(function() {
                 $('.delete').click(function() {
