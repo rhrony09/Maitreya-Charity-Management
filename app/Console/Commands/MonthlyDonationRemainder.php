@@ -45,11 +45,7 @@ class MonthlyDonationRemainder extends Command {
 টিম মৈত্রেয়';
                 //send mail
                 if (!empty($user->email)) {
-                    if (Mail::to($user->email)->queue(new MailMonthlyDonationRemainder($user, $month))) {
-                        rh_log($user->email, 'Remainder Email', 'Sent');
-                    } else {
-                        rh_log($user->email, 'Remainder Email', 'Failed');
-                    }
+                    Mail::to($user->email)->queue(new MailMonthlyDonationRemainder($user, $month));
                 }
                 //send sms
                 if (send_sms($user->contact, $message)) {

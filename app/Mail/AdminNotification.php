@@ -26,6 +26,7 @@ class AdminNotification extends Mailable {
      * @return $this
      */
     public function build() {
+        rh_log('info@maitreyabd.org', 'Admin Notification Email', 'Sent');
         return $this->markdown('admin.mail.admin_notification', [
             'user' => $this->user
         ]);

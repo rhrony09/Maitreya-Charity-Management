@@ -149,11 +149,7 @@ class FundsController extends Controller {
 
             //send confirmation mail to user
             if ($data['email']) {
-                if (Mail::to($data['email'])->queue(new DonationConfirmation($data))) {
-                    rh_log($data['email'], 'Donation Received Email', 'Sent');
-                } else {
-                    rh_log($data['email'], 'Donation Received Email', 'Failed');
-                }
+                Mail::to($data['email'])->queue(new DonationConfirmation($data));
             }
 
             //send confirmation sms to user

@@ -28,6 +28,7 @@ class MonthlyDonationRemainder extends Mailable {
      * @return $this
      */
     public function build() {
+        rh_log($this->user['email'], 'Remainder Email', 'Sent');
         return $this->markdown('admin.mail.monthly-donation-remainder', [
             'user' => $this->user,
             'month' => $this->month

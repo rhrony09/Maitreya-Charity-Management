@@ -26,6 +26,7 @@ class DonationConfirmation extends Mailable {
      * @return $this
      */
     public function build() {
+        rh_log($this->data['email'], 'Donation Received Email', 'Sent');
         return $this->markdown('admin.mail.donation_confirmation', [
             'data' => $this->data
         ]);

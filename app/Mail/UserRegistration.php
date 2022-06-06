@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserRegistration extends Mailable implements ShouldQueue {
+class UserRegistration extends Mailable {
     use Queueable, SerializesModels;
 
     public $user;
@@ -26,6 +26,7 @@ class UserRegistration extends Mailable implements ShouldQueue {
      * @return $this
      */
     public function build() {
+        rh_log($this->user['email'], 'Member Reg Email', 'Sent');
         return $this->markdown('admin.mail.user-registration', [
             'user' => $this->user
         ]);

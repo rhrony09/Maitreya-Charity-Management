@@ -436,9 +436,9 @@
                 let id = $(this).data('id');
                 $('#QrModal').modal('show');
                 if (id == 1) {
-                    $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/bkash-qr.jpg') }}" alt="qr-code">');
+                    $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/bkashqr.jpg') }}" alt="qr-code">');
                 } else if (id == 2) {
-                    $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/rocket-qr.jpg') }}" alt="qr-code">');
+                    $('#QrModal .modal-body').html('<img class="img-fluid" src="{{ asset('uploads/images/rocketqr.jpg') }}" alt="qr-code">');
                 }
             });
         });

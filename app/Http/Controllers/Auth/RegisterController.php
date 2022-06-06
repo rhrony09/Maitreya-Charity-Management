@@ -72,20 +72,13 @@ class RegisterController extends Controller {
         $user_details = [
             'name' => $data['name'],
             'contact' => $data['contact'],
+            'email' => $data['email'],
             'password' => $data['password'],
         ];
         if ($data['email']) {
-            if (Mail::to($data['email'])->queue(new UserRegistration($user_details))) {
-                rh_log($data['email'], 'Member Reg Email', 'Sent');
-            } else {
-                rh_log($data['email'], 'Member Reg Email', 'Failed');
-            }
+            Mail::to($data['email'])->queue(new UserRegistration($user_details));
         }
-        if (Mail::to('info@maitreyabd.org')->queue(new AdminNotification($user_details))) {
-            rh_log('info@maitreyabd.org', 'Admin Notification Email', 'Sent');
-        } else {
-            rh_log('info@maitreyabd.org', 'Admin Notification Email', 'Failed');
-        }
+        Mail::to('info@maitreyabd.org')->queue(new AdminNotification($user_details));
 
         $message = 'আমাদের সাথে স্বেচ্ছাসেবী হিসাবে যোগদানের জন্য ধন্যবাদ।
 

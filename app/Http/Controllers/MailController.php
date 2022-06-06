@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserRegistration;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller {
@@ -16,11 +14,7 @@ class MailController extends Controller {
             'password' => '12345678',
             'email' => 'rhrony0009@gmail.com'
         ];
-        if (Mail::to($user_details['email'])->queue(new UserRegistration($user_details))) {
-            rh_log($user_details['email'], 'Dubug Email', 'Sent');
-        } else {
-            rh_log($user_details['email'], 'Dubug Email', 'Failed');
-        }
+        Mail::to($user_details['email'])->queue(new UserRegistration($user_details));
 
         // return redirect()->route('home');
     }
