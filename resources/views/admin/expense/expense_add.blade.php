@@ -52,7 +52,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            //
+            $('#member').select2();
         });
     </script>
 @endsection

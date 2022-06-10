@@ -88,6 +88,7 @@
                 let type_2 = '<input type="text" class="form-control @error('member') is-invalid @enderror" name="member" id="member" value="{{ old('member') }}"> @error('member') <div class = "invalid-feedback"> {{ $message }} </div> @enderror';
                 if (type == 1) {
                     $('#data').html(type_1);
+                    $('#member').select2();
                 } else {
                     $('#data').html(type_2);
                 }

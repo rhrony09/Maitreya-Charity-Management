@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel {
      * @return void
      */
     protected function schedule(Schedule $schedule) {
-        $schedule->command('queue:work --daemon')->everyMinute()->runInBackground();
+        $schedule->command('queue:work')->everyMinute()->runInBackground();
         $schedule->command('monthly:remainder')->monthlyOn(01, '10:00')->runInBackground();
         $schedule->command('monthly:remainder')->monthlyOn(10, '10:00')->runInBackground();
         $schedule->command('clear:logs')->monthlyOn(01, '00:00')->runInBackground();

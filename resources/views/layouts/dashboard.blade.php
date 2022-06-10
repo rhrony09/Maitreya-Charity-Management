@@ -24,7 +24,8 @@
     <link href="{{ asset('assets/backend/css/icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
+    <!-- Select2 -->
+    <link href="{{ asset('assets/backend/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- loader-->
@@ -322,6 +323,10 @@
     <script src="{{ asset('assets/backend/js/table-datatable.js') }}"></script>
     <!--app-->
     <script src="{{ asset('assets/backend/js/app.js') }}"></script>
+
+    <!-- Select2 -->
+    <script src="{{ asset('assets/backend/plugins/select2/js/select2.min.js') }}"></script>
+
     <script src="{{ asset('js/script.js') }}"></script>
     <script>
         new PerfectScrollbar(".best-product")
