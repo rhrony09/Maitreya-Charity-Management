@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-bordered text-center align-middle nowrap" id="example">
+                    <table class="table table-striped table-bordered text-center align-middle nowrap" style="min-width: 1000px;" id="example">
                         <thead>
                             <tr>
                                 <th>Serial</th>
@@ -28,6 +28,7 @@
                                 <th>Role</th>
                                 <th>Type</th>
                                 <th>Status</th>
+                                <th>Last Visit</th>
                                 <th>Join On</th>
                                 @if (Auth::user()->role <= 3)
                                     <th>Action</th>
@@ -38,9 +39,14 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img class="profile-pic" src="{{ asset('uploads/users/' . $user->image) }}" alt="{{ $user->name }}"></td>
+                                    <td>
+                                        <div class="position-relative">
+                                            <img class="profile-pic" src="{{ asset('uploads/users/' . $user->image) }}" alt="{{ $user->name }}">
+                                            <span class="activity {{ Cache::has('user-is-online-' . $user->id) ? 'bg-success' : 'bg-offline' }}"><span class="visually-hidden">.</span></span>
+                                        </div>
+                                    </td>
                                     <td>{{ $user->name }} @if ($user->id == Auth::id())
-                                            <span class="badge rounded-pill bg-secondary fw-normal">It's you</span>
+                                            <span class="badge rounded-pill bg-secondary fw-normal">You</span>
                                         @endif
                                     </td>
                                     <td>{{ $user->contact }}</td>
@@ -58,6 +64,7 @@
                                             <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Inactive</option>
                                         </select>
                                     </td>
+                                    <td>{{ $user->last_visit ? Carbon\Carbon::parse($user->last_visit)->diffForHumans() : '-' }}</td>
                                     <td>{{ $user->created_at->diffForHumans() }}</td>
                                     @if (Auth::user()->role <= 3)
                                         <td>

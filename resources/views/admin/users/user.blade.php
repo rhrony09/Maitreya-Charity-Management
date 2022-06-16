@@ -14,28 +14,28 @@
                             <form action="{{ route('users.update.info') }}" method="POST" class="row g-3">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $user->id }}">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }} {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" value="{{ old('name') ?? $user->name }}">
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Email</label>
                                     <input type="text" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }} {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" value="{{ old('email') ?? $user->email }}">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Contact</label>
                                     <input type="tel" name="contact" class="form-control  {{ $errors->has('contact') ? 'is-invalid' : '' }} {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" value="{{ old('contact') ?? $user->contact }}">
                                     @error('contact')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Role</label>
                                     @if (Auth::user()->role < $user->role && Auth::id() != $user->id)
                                         <select class="form-select" name="role">
@@ -51,7 +51,7 @@
                                     @endif
 
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Member Type</label>
                                     <select class="form-select {{ Auth::user()->role <= $user->role && Auth::user()->role <= 2 ? '' : 'disabled' }}" name="type">
                                         <option value="1" {{ $user->type == 1 ? 'selected' : '' }}>Regular Member</option>
@@ -79,7 +79,7 @@
                         <form action="{{ route('users.update.password') }}" method="POST" class="row g-3">
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <label class="form-label">New Password</label>
                                 <div class="input-group">
                                     <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror" id="password" placeholder="Enter new password" value="{{ old('password') }}" required>
@@ -89,7 +89,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-md-6">
                                 <label class="form-label">Confirm Password</label>
                                 <div class="input-group">
                                     <input type="password" name="confirm_password" class="form-control  @error('confirm_password') is-invalid @enderror" id="confirm_password" placeholder="Enter confirm password" value="{{ old('confirm_password') }}" required>
@@ -111,7 +111,10 @@
             <div class="card shadow-sm border-0 overflow-hidden">
                 <div class="card-body">
                     <div class="profile-avatar text-center">
-                        <img id="profile-pic" src="{{ asset('uploads/users/' . $user->image) }}" class="rounded-circle shadow" width="120" height="120" alt="{{ $user->name }}">
+                        <div class="position-relative d-inline-block">
+                            <img id="profile-pic" src="{{ asset('uploads/users/' . $user->image) }}" class="rounded-circle shadow" width="120" height="120" alt="{{ $user->name }}">
+                            <span class="activity profile {{ Cache::has('user-is-online-' . $user->id) ? 'bg-success' : 'bg-offline' }}"><span class="visually-hidden">.</span></span>
+                        </div>
                     </div>
                     <div class="text-center mt-4">
                         <h4 class="mb-1">{{ $user->name }}</h4>

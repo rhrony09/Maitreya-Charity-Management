@@ -11,21 +11,21 @@
                         <div class="card-body">
                             <form action="{{ route('profile.update.info') }}" method="POST" class="row g-3">
                                 @csrf
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Name</label>
                                     <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') ?? Auth::user()->name }}">
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Contact No</label>
                                     <input type="tel" name="contact" class="form-control {{ $errors->has('contact') ? 'is-invalid' : '' }}" value="{{ old('contact') ?? Auth::user()->contact }}">
                                     @error('contact')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Email Address</label>
                                     <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') ?? Auth::user()->email }}">
                                     @error('email')
@@ -49,7 +49,7 @@
                         <div class="card-body">
                             <form action="{{ route('profile.update.info') }}" method="POST" class="row g-3">
                                 @csrf
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">New Password</label>
                                     <div class="input-group">
                                         <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror" id="password" placeholder="Enter new password" value="{{ old('password') }}">
@@ -59,7 +59,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <label class="form-label">Confirm Password</label>
                                     <div class="input-group">
                                         <input type="password" name="confirm_password" class="form-control  @error('confirm_password') is-invalid @enderror" id="confirm_password" placeholder="Enter confirm password" value="{{ old('confirm_password') }}">
@@ -82,7 +82,10 @@
             <div class="card shadow-sm border-0 overflow-hidden">
                 <div class="card-body">
                     <div class="profile-avatar text-center">
-                        <img id="profile-pic" src="{{ asset('uploads/users/' . Auth::user()->image) }}" class="rounded-circle shadow" alt="{{ Auth::user()->name }}">
+                        <div class="position-relative d-inline-block">
+                            <img id="profile-pic" src="{{ asset('uploads/users/' . Auth::user()->image) }}" class="rounded-circle shadow" alt="{{ Auth::user()->name }}">
+                            <span class="activity profile bg-success"><span class="visually-hidden">.</span></span>
+                        </div>
                     </div>
                     <div class="text-center mt-4">
                         <h4 class="mb-1">{{ Auth::user()->name }}</h4>

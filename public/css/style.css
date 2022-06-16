@@ -197,3 +197,28 @@ input:checked+.slider:before {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 35px;
 }
+
+.activity {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 14px;
+    width: 14px;
+    outline: 3px solid #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.activity.profile {
+    bottom: 8px;
+    right: 7px;
+    height: 17px;
+    width: 17px;
+}
+
+.bg-offline {
+    background-color: #c5c5c5;
+}

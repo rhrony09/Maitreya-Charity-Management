@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->string('password');
             $table->string('status')->default('0')->comment('1 = active, 0 = inactive');
             $table->rememberToken();
+            $table->timestamp('last_visit')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -41,9 +41,11 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="text-start">
-                                        <div class="chip m-0">
-                                            <img src="{{ asset('uploads/users/' . $member->image) }}" alt="Contact Person">{{ $member->name }}
-                                        </div>
+                                        <a href="{{ route('users.view', $member->id) }}">
+                                            <div class="chip m-0">
+                                                <img src="{{ asset('uploads/users/' . $member->image) }}" alt="Member">{{ $member->name }}
+                                            </div>
+                                        </a>
                                     </td>
                                     @for ($i = 1; $i <= 12; $i++)
                                         <td>
